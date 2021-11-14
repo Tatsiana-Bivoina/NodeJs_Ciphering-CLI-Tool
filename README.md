@@ -14,4 +14,5 @@
 3. **-o, --output**: a path to output file
 
 **Open the terminal and enter command:**
-*For example*: node main.mjs -c "C1-C0-A-R1-R0" -i "./input.txt" -o "./output.txt"
+*For example*: 
+***node main.mjs -c "C1-C0-A-R1-R0" -i "./input.txt" -o "./output.txt"***
