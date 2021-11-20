@@ -1,26 +1,25 @@
-export function rotCipher(chunk, cipher) {
-  if(cipher == 'R1') return encodeRot(chunk);
-  else return decodeRot(chunk);
+function caesarCipher(chunk, cipher) {
+  if(cipher == 'C1') return encodeCaesar(chunk);
+  else return decodeCaesar(chunk);
 }
 
-function encodeRot(chunk) {
-  let offSet = 8;
+function encodeCaesar(chunk) {
   let out = '';
-  for(let i = 0; i < chunk.length; i++) {
+  for(let i = 0; i < chunk.length; i++) { 
     let code = chunk.charCodeAt(i);
     if(code >= 65 && code <= 90) {
-      if(code + offSet <= 90) {
-        code = code + offSet;
+      if(code == 90) {
+        code = 65;
       } else {
-        code = code + offSet - 90 + 64;
+        code++;
       }
       out += String.fromCharCode(code);
     }
     else if(code >= 97 && code <= 122) {
-      if(code + offSet <= 122) {
-        code = code + offSet;
+      if(code == 122) {
+        code = 97;
       } else {
-        code = code + offSet - 122 + 96;
+        code++;
       }
       out += String.fromCharCode(code);
     }
@@ -31,24 +30,23 @@ function encodeRot(chunk) {
   return chunk = out;
 }
 
-function decodeRot(chunk) {
-  let offSet = 8;
+function decodeCaesar(chunk) {
   let out = '';
   for(let i = 0; i < chunk.length; i++) {
     let code = chunk.charCodeAt(i);
     if(code >= 65 && code <= 90) {
-      if(code - offSet >= 65) {
-        code = code - offSet;
+      if(code == 65) {
+        code = 90;
       } else {
-        code = 90 - offSet + (code - 64);
+        code--;
       }
       out += String.fromCharCode(code);
     }
     else if(code >= 97 && code <= 122) {
-      if(code - offSet >= 97) {
-        code = code - offSet;
+      if(code == 97) {
+        code = 122;
       } else {
-        code = 122 - offSet + (code - 96);
+        code--;
       }
       out += String.fromCharCode(code);
     }
@@ -58,3 +56,9 @@ function decodeRot(chunk) {
   }
   return chunk = out;
 }
+
+module.exports = {
+  encodeCaesar,
+  caesarCipher,
+  decodeCaesar
+};
