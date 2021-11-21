@@ -1,0 +1,25 @@
+{
+  "name": "rollingscopesnode_ciphering-cli-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tatsiana-Bivoina/NodeJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tatsiana-Bivoina/NodeJs/issues"
+  },
+  "homepage": "https://github.com/Tatsiana-Bivoina/NodeJs#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
