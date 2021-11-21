@@ -5,17 +5,17 @@ describe('RotCipher', () => {
   let input;
 
   test('should return encoded string', () => {
-    input = 'Hello world';
+    input = 'Hello world! Sss';
     let cipher = 'R1';
     output = rotCipher(input, cipher);
-    expect(output).toBe('Pmttw ewztl');
+    expect(output).toBe('Pmttw ewztl! Aaa');
   });
 
   test('should return decoded string', () => {
-    input = 'Pmttw ewztl';
+    input = 'Pmttw ewztl! Aaa';
     let cipher = 'R0';
     output = rotCipher(input, cipher);
-    expect(output).toBe('Hello world');
+    expect(output).toBe('Hello world! Sss');
   });
 });
 

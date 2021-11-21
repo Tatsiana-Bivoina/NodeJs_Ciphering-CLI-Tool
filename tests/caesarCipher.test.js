@@ -1,21 +1,22 @@
 const { encodeCaesar, caesarCipher, decodeCaesar } = require('../ciphers/caesarCipher');
+const { test, expect } = require('@jest/globals');
 
 describe('CaesarCipher', () => {
   let output;
   let input;
 
   test('should return encoded string', () => {
-    input = 'Hello world';
+    input = 'Hello world! Zzz';
     let cipher = 'C1';
     output = caesarCipher(input, cipher);
-    expect(output).toBe('Ifmmp xpsme');
+    expect(output).toBe('Ifmmp xpsme! Aaa');
   });
 
   test('should return decoded string', () => {
-    input = 'Ifmmp xpsme';
+    input = 'Ifmmp xpsme! Aaa';
     let cipher = 'C0';
     output = caesarCipher(input, cipher);
-    expect(output).toBe('Hello world');
+    expect(output).toBe('Hello world! Zzz');
   });
 });
 
