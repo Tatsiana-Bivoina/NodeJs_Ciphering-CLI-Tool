@@ -1,27 +1,13 @@
-// import fs from 'fs';
 const fs = require('fs');
-// import path from 'path';
 const path = require('path');
-// import { argv } from 'process';
 const { argv } = require('process');
-// import { pipeline, Transform } from 'stream';
 const { pipeline, Transform } = require('stream');
-// import { stdin, stdout } from 'process';
 const { stdin, stdout } = require('process');
-// import {
-//   checkRepeatedArguments,
-//   validateArgumentsConfig,
-//   checkFilePath,
-// } from './validation/parseAndValidateArg.js';
-const { checkRepeatedArguments, validateArgumentsConfig, checkFilePath } = require('./validation/parseAndValidateArg.js');
-// import { caesarCipher } from './ciphers/caesarCipher.js';
+const { checkRepeatedArguments, validateArgumentsConfig, checkInputFilePath, checkOutputFilePath } = require('./validation/parseAndValidateArg.js');
 const { caesarCipher } = require('./ciphers/caesarCipher.js');
-// import { rotCipher } from './ciphers/rotCipher.js';
 const { rotCipher } = require('./ciphers/rotCipher.js');
-// import { atbashCipher } from './ciphers/atbashCipher.js';
 const { atbashCipher } = require('./ciphers/atbashCipher.js');
 
-// const __dirname = path.resolve();
 let inputFilePath = '';
 let fileName= '';
 let outputFilePath = '';
@@ -30,7 +16,9 @@ function main() {
   let inputArg = argv.slice(2);
   validateArgumentsConfig(inputArg);
   checkRepeatedArguments(inputArg);
-  checkFilePath(inputArg);
+  checkInputFilePath(inputArg);
+  checkOutputFilePath(inputArg);
+  // checkFilePath(inputArg);
 
   let streamsArr = createStreams(inputArg);
 
@@ -86,12 +74,13 @@ function main() {
       }
     }
   )
-  function exitProcess() {
-    console.log('\x1b[35m%s\x1b[0m', 'Thanks! Great job!');
-    process.exit();
-  }
 }
 main();
+
+function exitProcess() {
+  console.log('\x1b[35m%s\x1b[0m', 'Thanks! Great job!');
+  process.exit();
+}
 
 function createStreams(inputArg) {
   let flagIndex = null;
@@ -101,7 +90,6 @@ function createStreams(inputArg) {
     if (el == 'C1' || el == 'C0') {
       return new Transform({
         transform(chunk, enc, cb) {
-          console.log(caesarCipher(chunk.toString(), el))
           cb(null, caesarCipher(chunk.toString(), el));
         }
       });
